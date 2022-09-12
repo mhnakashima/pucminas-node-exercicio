@@ -39,9 +39,9 @@ const lista_produtos = {
     ]
 }
 
-app.get(endpoint, function(req, res){
+app.get(endpoint, function (req, res) {
     res.send('index');
-}) 
+})
 
 app.get(endpoint + 'produtos', function (req, res) {
     res.status(200).json(lista_produtos)
@@ -91,11 +91,8 @@ app.post(endpoint + 'produtos', function (req, res) {
     res.status(200).json(lista_produtos)
 })
 
-var server = app.listen(3000, function () {
-    var host = server.address().address
-    var port = server.address().port
-    
-    console.log("Example app listening at http://%s:%s", host, port)
-})
+app.listen(process.env.PORT || 3000, function () {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 module.exports = apiRouter;
